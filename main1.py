@@ -210,7 +210,7 @@ async def main():
                             iframe_el = await page.wait_for_selector("iframe")
                             frame = await iframe_el.content_frame()
 
-                            buttons = frame.locator("div.btn.btn--sm:text('Подписаться')")
+                            buttons = frame.locator("div.btn.btn--sm:has-text('Подписаться'), div.btn.btn--sm:has-text('Проверить')")
                             count = await buttons.count()
 
                             if lesha >= 5:
@@ -224,7 +224,7 @@ async def main():
                                 await asyncio.sleep(1)
                                 iframe_el = await page.wait_for_selector("iframe")
                                 frame = await iframe_el.content_frame()
-                                buttons = frame.locator("div.btn.btn--sm:text('Подписаться')")
+                                buttons = frame.locator("div.btn.btn--sm:has-text('Подписаться'), div.btn.btn--sm:has-text('Проверить')")
                                 await buttons.nth(i).click(timeout=20000)
                                 await asyncio.sleep(3)
                                 if len(context.pages) > 1:
