@@ -227,11 +227,17 @@ async def main():
                                 buttons = frame.locator("div.btn.btn--sm:has-text('Подписаться'), div.btn.btn--sm:has-text('Проверить')")
                                 await buttons.nth(i).click(timeout=20000)
                                 await asyncio.sleep(3)
+                                
                                 if len(context.pages) > 1:
+                                    print(2)
                                     new_page = context.pages[-1]
+                                    print(1)
                                     await open_max.goto_to_url(new_page.url)
+                                    print(3)
                                     await new_page.close()
+                                    print(4)
                                     await page.bring_to_front()
+                                    print(9999)
                                     continue
 
                                 join_buttons = [

@@ -13,12 +13,11 @@ class Open_max:
         self.page = await self.browser.new_page()
 
     async def goto_to_url(self, url):
-        await self.page.goto(url)
-        await self.page.locator("//a[@class='button button--link button--big svelte-1ykbbcv']").click()
-        await self.page.wait_for_timeout(7000)
-        await self.page.locator("//button[@aria-label='Закрыть']").click()
-        #await self.page.wait_for_timeout(5000)
-
+        await self.page.goto(url, timeout=15000)
+        await self.page.locator("//a[@class='button button--link button--big svelte-1ykbbcv']").click(timeout=5000)
+        await self.page.locator("//button[@aria-label='Проверить подписку']").last.click(timeout=5000)
+        await self.page.wait_for_timeout(15000)
+        await self.page.locator("//button[@aria-label='Закрыть']").click(timeout=5000)
     async def close(self):
         if self.browser:
             await self.browser.close()
