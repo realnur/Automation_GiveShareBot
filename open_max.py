@@ -9,8 +9,9 @@ class Open_max:
 
     async def init_browser(self):
         self.playwright = await async_playwright().start()
-        self.browser = await self.playwright.chromium.launch_persistent_context("user_max_data",headless=False)
-        self.page = await self.browser.new_page()
+        self.browser = await self.playwright.chromium.launch(headless=False)
+        self.context = await self.browser.new_context(storage_state="states_max/max.json")
+        self.page = await self.context.new_page()
 
     async def goto_to_url(self, url):
         await self.page.goto(url, timeout=15000)
