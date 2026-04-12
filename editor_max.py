@@ -7,7 +7,8 @@ def save_session():
         page = context.new_page()
         page.goto("https://web.max.ru/")
         input("После входа нажмите Enter в консоли для сохранения сессии...")
-        context.storage_state(path="states_max/max.json")
+        for i in range(1, 10):
+            context.storage_state(path=f"states_max/max{i}.json")
         print("Сессия сохранена в max.json")
         browser.close()
 

@@ -1,3 +1,4 @@
+number_thread = 1
 import os
 import asyncio
 import re
@@ -18,7 +19,7 @@ def read_links():
 # --- читаем sessions.txt ---
 def read_sessions():
     sessions = []
-    with open("sessions1.txt", "r", encoding="utf-8") as f:
+    with open(f"sessions{number_thread}.txt", "r", encoding="utf-8") as f:
         for ln in f:
             s = ln.strip()
             if not s:
@@ -80,7 +81,7 @@ async def main():
         print("[ERR] links.txt пустой или не найден")
         return
     open_max = Open_max()
-    await open_max.init_browser()
+    await open_max.init_browser(number_thread)
     async with async_playwright() as p:
         for session_name in sessions:
             aleksei = True
